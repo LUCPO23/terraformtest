@@ -9,6 +9,7 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 }
 
+#creating app service plan that we need for the app service itself
 resource "azurerm_app_service_plan" "main" {
   name                = "${var.prefix}-asp"
   location            = azurerm_resource_group.main.location
@@ -34,9 +35,7 @@ resource "azurerm_app_service" "main" {
 
   site_config {
     dotnet_framework_version = "v4.0"
-    #scm_type = "LocalGit"
-    #remote_debugging_enabled = true
-    #remote_debugging_version = "VS2019"
+    
   }
   source_control {
     repo_url = "https://github.com/LUCPO23/test-visma.git"
@@ -70,12 +69,7 @@ resource "azurerm_sql_database" "main" {
   location            = var.location
   server_name         = "${var.prefix}-sqldb"
 
-  # extended_auditing_policy {
-  #   storage_endpoint                        = azurerm_storage_account.example.primary_blob_endpoint
-  #   storage_account_access_key              = azurerm_storage_account.example.primary_access_key
-  #   storage_account_access_key_is_secondary = true
-  #   retention_in_days                       = 6
-  # }
+
 
 
 
@@ -83,9 +77,3 @@ resource "azurerm_sql_database" "main" {
     environment = "production"
   }
 }
-# resource "azurerm_app_service_source_control" "example" {
-#   app_service_id        = "${azurerm_app_service.example.id}"
-#   repo_url = "https://github.com/bogdilazarescu/ieei.git"
-#   is_manual_integration = true
-#   branch                = "master"
-# }
