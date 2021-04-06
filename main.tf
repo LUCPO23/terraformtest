@@ -50,9 +50,6 @@ resource "azurerm_sql_server" "example" {
   administrator_login          = "admin"
   administrator_login_password = "admin"
 
-  tags = {
-    environment = "production"
-  }
 }
 
 resource "azurerm_storage_account" "example" {
@@ -71,9 +68,4 @@ resource "azurerm_sql_database" "main" {
 
 
 
-
-
-  tags = {
-    environment = "production"
-  }
 }
