@@ -51,13 +51,13 @@ resource "azurerm_sql_server" "example" {
   administrator_login_password = "admin"
 
 }
-
+#Using ZRS replication type for HA
 resource "azurerm_storage_account" "example" {
   name                     = "testaccount"
   resource_group_name      = "${var.prefix}-resources"
   location                 = var.location
   account_tier             = "Standard"
-  account_replication_type = "LRS"
+  account_replication_type = "ZRS"
 }
 
 resource "azurerm_sql_database" "main" {
